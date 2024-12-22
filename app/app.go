@@ -27,7 +27,7 @@ func New(c config.Config) (*App, error) {
 
 func (a *App) Run() {
 	classColl := models.NewClassCollection(a.db)
-	class, err := db.FindByName(context.Background(), classColl, "Barbarian")
+	class, err := db.FindOneByKey(context.Background(), classColl, "name", "Barbarian")
 
 	if err != nil {
 		panic(err)

@@ -25,6 +25,6 @@ func New(c Config) (*mongo.Database, error) {
 	return client.Database(c.Database), nil
 }
 
-func FindByName[T any](ctx context.Context, collection *mongox.Collection[T], name string) (*T, error) {
-	return collection.Finder().Filter(query.NewBuilder().Eq("name", name).Build()).FindOne(ctx)
+func FindOneByKey[T any](ctx context.Context, collection *mongox.Collection[T], key string, value any) (*T, error) {
+	return collection.Finder().Filter(query.NewBuilder().Eq(key, value).Build()).FindOne(ctx)
 }
