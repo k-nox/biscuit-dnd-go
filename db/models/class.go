@@ -7,9 +7,24 @@ import (
 
 type Class struct {
 	mongox.Model
-	Name string `bson:"name"`
+	TableName          string             `bson:"table"`
+	Name               string             `bson:"name"`
+	HitDie             int                `bson:"hit_die"`
+	ProficiencyChoices ProficiencyChoices `bson:"proficiency_choices"`
+	ClassLevels        ClassLevelsApiUrl  `bson:"class_levels"`
+	Subclass           Subclasses         `bson:"subclass"`
+}
+
+type ProficiencyChoices struct{}
+
+type Subclasses struct{}
+
+type ClassLevelsApiUrl string
+
+func (c *Class) GetTableName() string {
+	return c.TableName
 }
 
 func (c *Class) NewClassCollection(db *mongo.Database) *mongox.Collection[Class] {
-	return mongox.NewCollection[Class](db.Collection("classes"))
+	return mongox.NewCollection[Class](db.Collection(c.GetTableName()))
 }

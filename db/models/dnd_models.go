@@ -5,6 +5,10 @@ import (
 	"go.mongodb.org/mongo-driver/v2/mongo"
 )
 
+// All reusable common methods should be defined here
+// All dnd models should implement this interface
+
 type DndModels interface {
 	NewClassCollection(db *mongo.Database) *mongox.Collection[Class]
+	GetTableName() string
 }
