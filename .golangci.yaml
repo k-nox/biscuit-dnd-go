@@ -1,0 +1,22 @@
+linters:
+  presets:
+    - bugs
+    - comment
+    - complexity
+    - error
+    - format
+    - import
+    - metalinter
+    - module
+    - performance
+    - sql
+    - style
+    - test
+    - unused
+  disable:
+    - depguard
+    - forbidigo
+    - gofumpt
+    - paralleltest
+    - varnamelen
+    - wsl
