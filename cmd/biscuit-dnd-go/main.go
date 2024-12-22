@@ -1,18 +1,23 @@
 package main
 
 import (
-	"context"
-	"fmt"
-
-	"github.com/chenmingyong0423/go-mongox/v2/builder/query"
-	"github.com/k-nox/biscuit-dnd-go/db/models"
+	"github.com/ilyakaznacheev/cleanenv"
+	"github.com/k-nox/biscuit-dnd-go/app"
+	"github.com/k-nox/biscuit-dnd-go/config"
 )
 
 func main() {
-	classColl := models.NewClassCollection()
-	res, err := classColl.Finder().Filter(query.NewBuilder().Eq("name", "Barbarian").Build()).FindOne(context.Background())
+	var cfg config.Config
+	err := cleanenv.ReadConfig("config/config.yaml", &cfg)
+
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(res)
+
+	app, err := app.New(cfg)
+	if err != nil {
+		panic(err)
+	}
+
+	app.Run()
 }

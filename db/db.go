@@ -1,26 +1,37 @@
 package db
 
 import (
+	"context"
+	"fmt"
+	"net"
+
+	"github.com/chenmingyong0423/go-mongox/v2"
+	"github.com/chenmingyong0423/go-mongox/v2/builder/query"
 	"go.mongodb.org/mongo-driver/v2/mongo"
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
-func getOptions() error {
-	return nil
+type Config struct {
+	Host     string `yaml:"host"`
+	Port     string `yaml:"port"`
+	Database string `yaml:"database"`
 }
 
-func getClient() (*mongo.Client, error) {
-	client, err := mongo.Connect(options.Client().ApplyURI("mongodb://localhost:27017"))
-	return client, err
+func New(c Config) (*mongo.Database, error) {
+	uri := "mongodb://" + net.JoinHostPort(c.Host, c.Port)
+	client, err := mongo.Connect(options.Client().ApplyURI(uri))
+	if err != nil {
+		return nil, fmt.Errorf("error connecting to mongo: %w", err)
+	}
+
+	return client.Database(c.Database), nil
 }
 
-func getDatabase(client *mongo.Client, database string, collection string) *mongo.Collection {
-	db := client.Database(database).Collection(collection)
-	return db
-}
+func FindOneByKey[T any](ctx context.Context, collection *mongox.Collection[T], key string, value any) (*T, error) {
+	doc, err := collection.Finder().Filter(query.NewBuilder().Eq(key, value).Build()).FindOne(ctx)
+	if err != nil {
+		return nil, fmt.Errorf("error finding one %T by key %s with value %v: %w", doc, key, value, err)
+	}
 
-func GetCollection(collection string) *mongo.Collection {
-	client, _ := mongo.Connect(options.Client().ApplyURI("mongodb://localhost:27017"))
-	coll := client.Database("5e-database").Collection(collection)
-	return coll
+	return doc, nil
 }
