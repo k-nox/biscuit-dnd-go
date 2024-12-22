@@ -5,16 +5,21 @@ DB_DOCKER_PATH := ../5e-database
 help:
 	@grep -he '^.PHONY:.*##' $(MAKEFILE_LIST) | sed -e 's/ *##/:\t/' | sed -e 's/^.PHONY: *//'
 
+.PHONY: install ## Install dependencies.
+install:
+	go get -t ./...
+	go mod tidy
+
 .PHONY: build ## Build app and output to bin/main.
-build:
+build: install
 	go build -o bin/main cmd/biscuit-dnd-go/main.go
 
 .PHONY: run ## Run app.
-run:
+run: install
 	go run cmd/biscuit-dnd-go/main.go
 
 .PHONY: test ## Run all tests.
-test:
+test: install
 	go test ./...
 
 .PHONY: lint ## Run golangci-lint, checking if golangci-lint is installed and prompting to install via homebrew if necessary.
