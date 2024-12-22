@@ -9,6 +9,7 @@ import (
 func main() {
 	var cfg config.Config
 	err := cleanenv.ReadConfig("config/config.yaml", &cfg)
+
 	if err != nil {
 		panic(err)
 	}

@@ -17,7 +17,7 @@ type App struct {
 func New(c config.Config) (*App, error) {
 	db, err := db.New(c.Database)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("error with db: %w", err)
 	}
 
 	return &App{
