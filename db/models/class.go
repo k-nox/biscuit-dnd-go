@@ -10,6 +10,6 @@ type Class struct {
 	Name string `bson:"name"`
 }
 
-func NewClassCollection(db *mongo.Database) *mongox.Collection[Class] {
+func (c *Class) NewClassCollection(db *mongo.Database) *mongox.Collection[Class] {
 	return mongox.NewCollection[Class](db.Collection("classes"))
 }
