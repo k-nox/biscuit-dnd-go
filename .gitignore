@@ -187,3 +187,7 @@ Temporary Items
 # End of https://www.toptal.com/developers/gitignore/api/macos,jetbrains,go,visualstudiocode
 
 bin/main
+
+# asdf & direnv
+.envrc
+.tool-versions
