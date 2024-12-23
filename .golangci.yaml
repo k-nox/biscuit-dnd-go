@@ -22,3 +22,4 @@ linters:
     - wsl
     - tagalign
     - exhaustruct
+    - nlreturn
