@@ -2,7 +2,6 @@ package models
 
 import (
 	"github.com/chenmingyong0423/go-mongox/v2"
-	"go.mongodb.org/mongo-driver/v2/bson"
 	"go.mongodb.org/mongo-driver/v2/mongo"
 )
 
@@ -14,9 +13,9 @@ const classTableName = "classes"
 
 type ClassSchema struct {
 	mongox.Model
-	Name        string `bson:"name"`
-	ClassLevels string `bson:"class_levels"`
-	Subclasses  bson.A `bson:"subclasses"`
+	Name        string     `bson:"name"`
+	ClassLevels string     `bson:"class_levels"`
+	Subclasses  []Subclass `bson:"subclasses"`
 }
 
 type Subclass struct {

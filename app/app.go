@@ -3,7 +3,6 @@ package app
 import (
 	"context"
 	"fmt"
-
 	"github.com/k-nox/biscuit-dnd-go/config"
 	"github.com/k-nox/biscuit-dnd-go/db"
 	"github.com/k-nox/biscuit-dnd-go/db/models"
@@ -37,7 +36,8 @@ func (a *App) Run() {
 	fmt.Println(
 		"id : ", classResult.ID,
 		" name : ", classResult.Name,
-		" subclass : ", classResult.Subclasses)
+		" subclass : ", classResult.Subclasses,
+		" subclass name : ", classResult.Subclasses[0].Name)
 
 	lang := models.LanguagesModel{}
 	langColl := lang.NewLanguagesCollection(a.db)
