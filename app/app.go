@@ -48,4 +48,10 @@ func (a *App) Run() {
 	}
 
 	fmt.Println("id : ", langResult.ID, " name : ", langResult.Name, " typical speakers : ", langResult.TypicalSpeakers)
+
+	equipment := models.EquipmentModel{}
+	equipmentColl := equipment.NewEquipmentCollection(a.db)
+	equipmentResult, err := db.FindOneByKey(context.Background(), equipmentColl, "name", "Club")
+
+	fmt.Println("id : ", equipmentResult.ID, " name : ", equipmentResult.Name, " weapon category : ", equipmentResult.WeaponCategory)
 }

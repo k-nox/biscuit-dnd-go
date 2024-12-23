@@ -6,19 +6,27 @@ import (
 )
 
 type EquipmentModel struct {
-	LangaugesSchema EquipmentSchema
+	EquipmentSchema EquipmentSchema
 }
 
-const tableName = "languages"
+const equipmentTableName = "equipment"
 
 type EquipmentSchema struct {
 	mongox.Model
-	Index           string   `bson:"index"`
-	Name            string   `bson:"name"`
-	Type            string   `bson:"type"`
-	Script          string   `bson:"script"`
-	url             string   `bson:"url"`
-	TypicalSpeakers []string `bson:"typical_speakers"`
+	Index             string            `bson:"index"`
+	Name              string            `bson:"name"`
+	WeaponCategory    string            `bson:"weapon_category"`
+	WeaponRange       string            `bson:"weapon_range"`
+	CategoryRange     string            `bson:"category_range"`
+	Weight            int               `bson:"weight"`
+	Url               string            `bson:"url"`
+	EquipmentCategory EquipmentCategory `bson:"equipment_category"`
+}
+
+type EquipmentCategory struct {
+	Index string `bson:"index"`
+	Name  string `bson:"name"`
+	Url   string `bson:"url"`
 }
 
 func (l *EquipmentModel) NewEquipmentCollection(db *mongo.Database) *mongox.Collection[EquipmentSchema] {
@@ -26,9 +34,9 @@ func (l *EquipmentModel) NewEquipmentCollection(db *mongo.Database) *mongox.Coll
 }
 
 func (l *EquipmentModel) GetTableName() string {
-	return tableName
+	return equipmentTableName
 }
 
 func (l *EquipmentModel) GetSchema() interface{} {
-	return l.LangaugesSchema
+	return l.EquipmentSchema
 }
