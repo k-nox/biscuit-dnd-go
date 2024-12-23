@@ -6,11 +6,21 @@ import (
 )
 
 type Class struct {
+	ClassSchema ClassSchema
+}
+
+const tableName = "classes"
+
+type ClassSchema struct {
 	mongox.Model
 	Name        string `bson:"name"`
 	ClassLevels string `bson:"class_levels"`
 }
 
-func (c *Class) NewClassCollection(db *mongo.Database) *mongox.Collection[Class] {
-	return mongox.NewCollection[Class](db.Collection("classes"))
+func (c *Class) NewClassCollection(db *mongo.Database) *mongox.Collection[ClassSchema] {
+	return mongox.NewCollection[ClassSchema](db.Collection(c.GetTableName()))
+}
+
+func (c *Class) GetTableName() string {
+	return tableName
 }

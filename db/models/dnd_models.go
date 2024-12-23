@@ -9,5 +9,5 @@ import (
 // All dnd models should implement this interface
 
 type DndModels interface {
-	NewClassCollection(db *mongo.Database) *mongox.Collection[Class]
+	NewClassCollection(db *mongo.Database) *mongox.Collection[ClassSchema]
 }
