@@ -27,7 +27,7 @@ type Subclass struct {
 }
 
 func NewClassModel() *ClassModel {
-	classModel := &ClassModel{} // lint:ignore U1000 Returning an empty struct pointer
+	classModel := &ClassModel{}
 	return classModel
 }
 
