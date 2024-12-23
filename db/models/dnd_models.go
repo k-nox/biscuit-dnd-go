@@ -10,4 +10,7 @@ import (
 
 type DndModels interface {
 	NewClassCollection(db *mongo.Database) *mongox.Collection[ClassSchema]
+	GetTableName() string
 }
+
+// Add core methods here
