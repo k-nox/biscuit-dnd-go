@@ -23,3 +23,4 @@ linters:
     - tagalign
     - exhaustruct
     - nlreturn
+    - wrapcheck
