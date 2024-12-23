@@ -9,16 +9,18 @@ WIP TUI character creation tool for 5e using the [5e-database](https://github.co
 If you are not on an M series mac, you can run the database with just:
 
 ```sh
-docker run -p 27017:27017 ghcr.io/5e-bits/5e-database:latest
+make db-up
 ```
 
-If you are on an M series mac or if you prefer to use the makefile to build & run the image then you will need to do the following:
+This will pull the 5e-databases image, build it, and expose it on port `27017`.
+
+If you are on an M series mac you will need to clone the database repository and build the image yourself:
 
 1. Clone the database repository - https://github.com/5e-bits/5e-database
    - It's suggested to clone this one directory up from the biscuit-dnd-go directory.
-2. Run `make startdb` to spin up the mongo database.
-   - This will build the [5e-database Dockerfile](https://github.com/5e-bits/5e-database/blob/main/Dockerfile) and start it, exposing it on port 27017.
-   - If you cloned the database repository somewhere other than `../5e-database`, you'll need to pass the path to the make command as `make startdb PATH=<path/to/5e-database>`
+2. In the `docker-compose.yaml` file, comment out the `image` block, and uncomment the `build` block.
+   - If you cloned the database repository somewhere other than `../5e-database`, you'll need to update the `build` block to point to the right place.
+3. Run `make db-up` to spin up the mongo database.
 
 ### Testing
 
@@ -32,6 +34,18 @@ or:
 
 ```sh
 go test ./...
+```
+
+To run only unit tests that don't require the mongodb:
+
+```sh
+make test-unit
+```
+
+or
+
+```sh
+go test -short ./...
 ```
 
 ### Linting

@@ -20,7 +20,11 @@ run: install
 
 .PHONY: test ## Run all tests.
 test: install
-	go test ./...
+	go test -v ./...
+
+.PHONY: test-unit ## Only run unit tests that don't require MongoDB.
+test-unit: install
+	go test -v -short ./...
 
 .PHONY: lint ## Run golangci-lint, checking if golangci-lint is installed and prompting to install via homebrew if necessary.
 lint: check-linter-installed
@@ -37,12 +41,9 @@ ifndef GOLANGCI_VERSION
 	brew install golangci-lint
 endif
 
-.PHONY: builddb ## Build the docker database image. Pass the path to your local copy of https://github.com/5e-bits/5e-database as DB_DOCKER_PATH=<path>, or default ../5e-database will be used.
-builddb:
-	docker build -t 5e-database $(DB_DOCKER_PATH)
+.PHONY: db ## Build & run the docker database image. To use a local copy of 5e-databases, uncomment the `build` key and comment out the `image` key in docker-compose.yaml.
+db-up:
+	docker compose up --detach --build db
 
-.PHONY: startdb ## Start the database. Pass the path to your local copy of https://github.com/5e-bits/5e-database as DB_DOCKER_PATH=<path>, or default ../5e-database will be used.
-startdb: builddb
-	docker run -p 27017:27017 -t 5e-database:latest
-
-
+db-down:
+	docker compose down --volumes --remove-orphans

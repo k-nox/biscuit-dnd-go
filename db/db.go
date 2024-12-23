@@ -12,9 +12,9 @@ import (
 )
 
 type Config struct {
-	Host     string `yaml:"host"`
-	Port     string `yaml:"port"`
-	Database string `yaml:"database"`
+	Host     string `yaml:"host" env:"MONGODB_HOST"`
+	Port     string `yaml:"port" env:"MONGODB_PORT"`
+	Database string `yaml:"database" env:"MONGODB_DATABASE"`
 }
 
 func New(c Config) (*mongo.Database, error) {
