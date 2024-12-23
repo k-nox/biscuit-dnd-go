@@ -48,7 +48,7 @@ func (a *App) Run() error {
 	langResult, err := db.FindOneByKey(context.Background(), langColl, "name", "Primordial")
 
 	if err != nil {
-		fmt.Errorf("error performing lookup: %w", err)
+		return err
 	}
 
 	fmt.Println("id : ", langResult.ID, " name : ", langResult.Name, " typical speakers : ", langResult.TypicalSpeakers)
@@ -57,7 +57,7 @@ func (a *App) Run() error {
 	equipmentColl := equipment.NewEquipmentCollection(a.db)
 	equipmentResult, err := db.FindOneByKey(context.Background(), equipmentColl, "name", "Club")
 	if err != nil {
-		panic(err)
+		return err
 	}
 
 	fmt.Println(
@@ -70,7 +70,7 @@ func (a *App) Run() error {
 	abilityScoreColl := abilityScore.NewAbilityScoreCollection(a.db)
 	abilityScoreResult, err := db.FindOneByKey(context.Background(), abilityScoreColl, "full_name", "Intelligence")
 	if err != nil {
-		panic(err)
+		return err
 	}
 
 	fmt.Println(
@@ -82,5 +82,5 @@ func (a *App) Run() error {
 	for _, skill := range abilityScoreResult.Skills {
 		fmt.Println("skill : ", skill.Name)
 	}
-	return err
+	return nil
 }
