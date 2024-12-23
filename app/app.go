@@ -58,4 +58,18 @@ func (a *App) Run() {
 		" name : ", equipmentResult.Name,
 		" weapon category : ", equipmentResult.WeaponCategory,
 		" equipment category name : ", equipmentResult.EquipmentCategory.Name)
+
+	abilityScore := models.AbilityScoreModel{}
+	abilityScoreColl := abilityScore.NewAbilityScoreCollection(a.db)
+	abilityScoreResult, err := db.FindOneByKey(context.Background(), abilityScoreColl, "full_name", "Intelligence")
+
+	fmt.Println(
+		"id : ", abilityScoreResult.ID,
+		" name : ", abilityScoreResult.Name,
+		" full name : ", abilityScoreResult.FullName,
+		" desc : ", abilityScoreResult.Desc)
+
+	for _, skill := range abilityScoreResult.Skills {
+		fmt.Println("skill : ", skill.Name)
+	}
 }
