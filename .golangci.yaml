@@ -21,3 +21,4 @@ linters:
     - varnamelen
     - wsl
     - tagalign
+    - exhaustruct
