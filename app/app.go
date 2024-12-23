@@ -34,7 +34,10 @@ func (a *App) Run() {
 		panic(err)
 	}
 
-	fmt.Println("id : ", classResult.ID, " name : ", classResult.Name)
+	fmt.Println(
+		"id : ", classResult.ID,
+		" name : ", classResult.Name,
+		" subclass : ", classResult.Subclasses)
 
 	lang := models.LanguagesModel{}
 	langColl := lang.NewLanguagesCollection(a.db)

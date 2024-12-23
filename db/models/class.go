@@ -2,6 +2,7 @@ package models
 
 import (
 	"github.com/chenmingyong0423/go-mongox/v2"
+	"go.mongodb.org/mongo-driver/v2/bson"
 	"go.mongodb.org/mongo-driver/v2/mongo"
 )
 
@@ -15,6 +16,13 @@ type ClassSchema struct {
 	mongox.Model
 	Name        string `bson:"name"`
 	ClassLevels string `bson:"class_levels"`
+	Subclasses  bson.A `bson:"subclasses"`
+}
+
+type Subclass struct {
+	Index string `bson:"index"`
+	Name  string `bson:"name"`
+	Url   string `bson:"url"`
 }
 
 func (c *ClassModel) NewClassCollection(db *mongo.Database) *mongox.Collection[ClassSchema] {
