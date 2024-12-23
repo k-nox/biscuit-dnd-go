@@ -26,21 +26,23 @@ func New(c config.Config) (*App, error) {
 }
 
 func (a *App) Run() {
-	classColl := models.DndModels(&models.Class{}).NewClassCollection(a.db)
-	class, err := db.FindOneByKey(context.Background(), classColl, "name", "Barbarian")
+	class := models.Class{}
+	classColl := class.NewClassCollection(a.db)
+	classResult, err := db.FindOneByKey(context.Background(), classColl, "name", "Barbarian")
 
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Println("id : ", class.ID, " name : ", class.Name)
+	fmt.Println("id : ", classResult.ID, " name : ", classResult.Name)
 
-	langColl := models.DndModels(&models.Languages{}).NewClassCollection(a.db)
-	lang, err := db.FindOneByKey(context.Background(), langColl, "name", "Primordial")
+	lang := models.Languages{}
+	langColl := lang.NewLanguagesCollection(a.db)
+	langResult, err := db.FindOneByKey(context.Background(), langColl, "name", "Primordial")
 
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Println("id : ", lang.ID, " name : ", lang.Name)
+	fmt.Println("id : ", langResult.ID, " name : ", langResult.Name)
 }

@@ -6,22 +6,28 @@ import (
 )
 
 type Languages struct {
-	ClassSchema ClassSchema
+	LangaugesSchema LanguagesSchema
 }
 
 const tableName = "languages"
 
 type LanguagesSchema struct {
 	mongox.Model
-	Index string `bson:"index"`
-	Name  string `bson:"name"`
-	Type  string `bson:"type"`
+	Index  string `bson:"index"`
+	Name   string `bson:"name"`
+	Type   string `bson:"type"`
+	Script string `bson:"script"`
+	url    string `bson:"url"`
 }
 
-func (c *Languages) NewClassCollection(db *mongo.Database) *mongox.Collection[ClassSchema] {
-	return mongox.NewCollection[ClassSchema](db.Collection(c.GetTableName()))
+func (l *Languages) NewLanguagesCollection(db *mongo.Database) *mongox.Collection[LanguagesSchema] {
+	return mongox.NewCollection[LanguagesSchema](db.Collection(l.GetTableName()))
 }
 
-func (c *Languages) GetTableName() string {
+func (l *Languages) GetTableName() string {
 	return tableName
+}
+
+func (l *Languages) GetSchema() interface{} {
+	return l.LangaugesSchema
 }
