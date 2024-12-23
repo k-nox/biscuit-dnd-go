@@ -44,5 +44,5 @@ func (a *App) Run() {
 		panic(err)
 	}
 
-	fmt.Println("id : ", langResult.ID, " name : ", langResult.Name)
+	fmt.Println("id : ", langResult.ID, " name : ", langResult.Name, " typical speakers : ", langResult.TypicalSpeakers)
 }
