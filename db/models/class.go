@@ -23,7 +23,7 @@ type ClassSchema struct {
 type Subclass struct {
 	Index  string `bson:"index"`
 	Name   string `bson:"name"`
-	ApiUrl string `bson:"url"`
+	ApiURL string `bson:"url"`
 }
 
 func (c *ClassModel) NewClassCollection(db *mongo.Database) *mongox.Collection[ClassSchema] {

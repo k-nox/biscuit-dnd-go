@@ -25,7 +25,7 @@ func New(c config.Config) (*App, error) {
 }
 
 func (a *App) Run() {
-	class := models.ClassModel{}
+	class := models.ClassModel{ClassSchema: models.ClassSchema{}}
 	classColl := class.NewClassCollection(a.db)
 	classResult, err := db.FindOneByKey(context.Background(), classColl, "name", "Barbarian")
 
@@ -39,7 +39,7 @@ func (a *App) Run() {
 		" subclass : ", classResult.Subclasses,
 		" subclass name : ", classResult.Subclasses[0].Name)
 
-	lang := models.LanguagesModel{}
+	lang := models.LanguagesModel{LangaugesSchema: models.LanguagesSchema{}}
 	langColl := lang.NewLanguagesCollection(a.db)
 	langResult, err := db.FindOneByKey(context.Background(), langColl, "name", "Primordial")
 
@@ -49,7 +49,7 @@ func (a *App) Run() {
 
 	fmt.Println("id : ", langResult.ID, " name : ", langResult.Name, " typical speakers : ", langResult.TypicalSpeakers)
 
-	equipment := models.EquipmentModel{}
+	equipment := models.EquipmentModel{EquipmentSchema: models.EquipmentSchema{}}
 	equipmentColl := equipment.NewEquipmentCollection(a.db)
 	equipmentResult, err := db.FindOneByKey(context.Background(), equipmentColl, "name", "Club")
 	if err != nil {
@@ -62,7 +62,7 @@ func (a *App) Run() {
 		" weapon category : ", equipmentResult.WeaponCategory,
 		" equipment category name : ", equipmentResult.EquipmentCategory.Name)
 
-	abilityScore := models.AbilityScoreModel{}
+	abilityScore := models.AbilityScoreModel{AbilityScoreSchema: models.AbilityScoreSchema{}}
 	abilityScoreColl := abilityScore.NewAbilityScoreCollection(a.db)
 	abilityScoreResult, err := db.FindOneByKey(context.Background(), abilityScoreColl, "full_name", "Intelligence")
 	if err != nil {
