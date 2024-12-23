@@ -28,7 +28,7 @@ func New(c config.Config, w io.Writer) (*App, error) {
 	}, nil
 }
 
-func (a *App) Run() {
+func (a *App) Run() error {
 	class := models.NewClassModel()
 	classColl := class.NewClassCollection(a.db)
 	classResult, err := db.FindOneByKey(context.Background(), classColl, "name", "Barbarian")
@@ -48,7 +48,7 @@ func (a *App) Run() {
 	langResult, err := db.FindOneByKey(context.Background(), langColl, "name", "Primordial")
 
 	if err != nil {
-		return fmt.Errorf("error performing lookup: %w", err)
+		fmt.Errorf("error performing lookup: %w", err)
 	}
 
 	fmt.Println("id : ", langResult.ID, " name : ", langResult.Name, " typical speakers : ", langResult.TypicalSpeakers)
@@ -82,4 +82,5 @@ func (a *App) Run() {
 	for _, skill := range abilityScoreResult.Skills {
 		fmt.Println("skill : ", skill.Name)
 	}
+	return err
 }
