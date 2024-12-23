@@ -18,7 +18,7 @@ type LanguagesSchema struct {
 	Name            string   `bson:"name"`
 	Type            string   `bson:"type"`
 	Script          string   `bson:"script"`
-	url             string   `bson:"url"`
+	ApiUrl          string   `bson:"url"`
 	TypicalSpeakers []string `bson:"typical_speakers"`
 }
 

@@ -19,14 +19,14 @@ type EquipmentSchema struct {
 	WeaponRange       string            `bson:"weapon_range"`
 	CategoryRange     string            `bson:"category_range"`
 	Weight            int               `bson:"weight"`
-	Url               string            `bson:"url"`
+	ApiUrl            string            `bson:"url"`
 	EquipmentCategory EquipmentCategory `bson:"equipment_category"`
 }
 
 type EquipmentCategory struct {
-	Index string `bson:"index"`
-	Name  string `bson:"name"`
-	Url   string `bson:"url"`
+	Index  string `bson:"index"`
+	Name   string `bson:"name"`
+	ApiUrl string `bson:"url"`
 }
 
 func (l *EquipmentModel) NewEquipmentCollection(db *mongo.Database) *mongox.Collection[EquipmentSchema] {

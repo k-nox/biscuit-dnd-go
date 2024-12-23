@@ -20,9 +20,9 @@ type SkillsSchema struct {
 }
 
 type AbilityScore struct {
-	Index string `bson:"index"`
-	Name  string `bson:"name"`
-	Url   string `bson:"url"`
+	Index  string `bson:"index"`
+	Name   string `bson:"name"`
+	ApiUrl string `bson:"url"`
 }
 
 func (a *SkillsModel) NewSkillsCollection(db *mongo.Database) *mongox.Collection[SkillsSchema] {
