@@ -33,3 +33,7 @@ func (c *ClassModel) NewClassCollection(db *mongo.Database) *mongox.Collection[C
 func (c *ClassModel) GetTableName() string {
 	return classTableName
 }
+
+func (c *ClassModel) GetSchema() interface{} {
+	return c.ClassSchema
+}
