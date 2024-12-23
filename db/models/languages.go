@@ -7,6 +7,7 @@ import (
 
 type LanguagesModel struct {
 	LangaugesSchema LanguagesSchema
+	TableName       string
 }
 
 const languagesTableName = "languages"
