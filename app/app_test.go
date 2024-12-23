@@ -20,6 +20,7 @@ func TestApp_Run(t *testing.T) {
 
 		var output bytes.Buffer
 		app, err := app.New(cfg, &output)
+		require.NoError(t, err)
 		require.NoError(t, app.Run())
 		expected := "Barbarian\n"
 

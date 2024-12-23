@@ -37,5 +37,6 @@ func (a *App) Run() error {
 	}
 
 	fmt.Fprintln(a.writer, class.Name)
+
 	return nil
 }

@@ -21,5 +21,8 @@ func main() {
 		panic(err)
 	}
 
-	app.Run()
+	err = app.Run()
+	if err != nil {
+		panic(err)
+	}
 }
