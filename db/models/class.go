@@ -11,6 +11,8 @@ type ClassModel struct {
 
 const classTableName = "classes"
 
+// TODO: split up work on class into multiple different tasks, this file will prolly get super big
+
 type ClassSchema struct {
 	mongox.Model
 	Name        string     `bson:"name"`
