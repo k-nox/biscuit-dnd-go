@@ -5,11 +5,11 @@ import (
 	"go.mongodb.org/mongo-driver/v2/mongo"
 )
 
-type Languages struct {
+type LanguagesModel struct {
 	LangaugesSchema LanguagesSchema
 }
 
-const tableName = "languages"
+const languagesTableName = "languages"
 
 type LanguagesSchema struct {
 	mongox.Model
@@ -21,14 +21,14 @@ type LanguagesSchema struct {
 	TypicalSpeakers []string `bson:"typical_speakers"`
 }
 
-func (l *Languages) NewLanguagesCollection(db *mongo.Database) *mongox.Collection[LanguagesSchema] {
+func (l *LanguagesModel) NewLanguagesCollection(db *mongo.Database) *mongox.Collection[LanguagesSchema] {
 	return mongox.NewCollection[LanguagesSchema](db.Collection(l.GetTableName()))
 }
 
-func (l *Languages) GetTableName() string {
-	return tableName
+func (l *LanguagesModel) GetTableName() string {
+	return languagesTableName
 }
 
-func (l *Languages) GetSchema() interface{} {
+func (l *LanguagesModel) GetSchema() interface{} {
 	return l.LangaugesSchema
 }

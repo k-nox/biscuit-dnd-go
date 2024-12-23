@@ -5,7 +5,7 @@ import (
 	"go.mongodb.org/mongo-driver/v2/mongo"
 )
 
-type Class struct {
+type ClassModel struct {
 	ClassSchema ClassSchema
 }
 
@@ -17,10 +17,10 @@ type ClassSchema struct {
 	ClassLevels string `bson:"class_levels"`
 }
 
-func (c *Class) NewClassCollection(db *mongo.Database) *mongox.Collection[ClassSchema] {
+func (c *ClassModel) NewClassCollection(db *mongo.Database) *mongox.Collection[ClassSchema] {
 	return mongox.NewCollection[ClassSchema](db.Collection(c.GetTableName()))
 }
 
-func (c *Class) GetTableName() string {
+func (c *ClassModel) GetTableName() string {
 	return classTableName
 }

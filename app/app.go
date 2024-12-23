@@ -26,7 +26,7 @@ func New(c config.Config) (*App, error) {
 }
 
 func (a *App) Run() {
-	class := models.Class{}
+	class := models.ClassModel{}
 	classColl := class.NewClassCollection(a.db)
 	classResult, err := db.FindOneByKey(context.Background(), classColl, "name", "Barbarian")
 
@@ -36,7 +36,7 @@ func (a *App) Run() {
 
 	fmt.Println("id : ", classResult.ID, " name : ", classResult.Name)
 
-	lang := models.Languages{}
+	lang := models.LanguagesModel{}
 	langColl := lang.NewLanguagesCollection(a.db)
 	langResult, err := db.FindOneByKey(context.Background(), langColl, "name", "Primordial")
 
