@@ -9,7 +9,7 @@ type Class struct {
 	ClassSchema ClassSchema
 }
 
-const tableName = "classes"
+const classTableName = "classes"
 
 type ClassSchema struct {
 	mongox.Model
@@ -22,5 +22,5 @@ func (c *Class) NewClassCollection(db *mongo.Database) *mongox.Collection[ClassS
 }
 
 func (c *Class) GetTableName() string {
-	return tableName
+	return classTableName
 }

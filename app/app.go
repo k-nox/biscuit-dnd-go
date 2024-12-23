@@ -33,5 +33,14 @@ func (a *App) Run() {
 		panic(err)
 	}
 
-	fmt.Println(class.ID, class.Name)
+	fmt.Println("id : ", class.ID, " name : ", class.Name)
+
+	langColl := models.DndModels(&models.Languages{}).NewClassCollection(a.db)
+	lang, err := db.FindOneByKey(context.Background(), langColl, "name", "Primordial")
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("id : ", lang.ID, " name : ", lang.Name)
 }
