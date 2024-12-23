@@ -31,7 +31,17 @@ type EquipmentCategory struct {
 
 func NewEquipmentModel() *EquipmentModel {
 	//lint:ignore U1000 Returning an empty struct pointer
-	return &EquipmentModel{}
+	return &EquipmentModel{EquipmentSchema: EquipmentSchema{
+		Model:             mongox.Model{},
+		Index:             "",
+		Name:              "",
+		WeaponCategory:    "",
+		WeaponRange:       "",
+		CategoryRange:     "",
+		Weight:            0,
+		APIURL:            "",
+		EquipmentCategory: EquipmentCategory{},
+	}}
 }
 
 func (l *EquipmentModel) NewEquipmentCollection(db *mongo.Database) *mongox.Collection[EquipmentSchema] {

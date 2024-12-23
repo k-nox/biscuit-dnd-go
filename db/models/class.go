@@ -28,7 +28,12 @@ type Subclass struct {
 
 func NewClassModel() *ClassModel {
 	//lint:ignore U1000 Returning an empty struct pointer
-	return &ClassModel{}
+	return &ClassModel{ClassSchema: ClassSchema{
+		Model:       mongox.Model{},
+		Name:        "",
+		ClassLevels: "",
+		Subclasses:  nil,
+	}}
 }
 
 func (c *ClassModel) NewClassCollection(db *mongo.Database) *mongox.Collection[ClassSchema] {

@@ -24,7 +24,15 @@ type LanguagesSchema struct {
 
 func NewLanguagesModel() *LanguagesModel {
 	//lint:ignore U1000 Returning an empty struct pointer
-	return &LanguagesModel{}
+	return &LanguagesModel{LangaugesSchema: LanguagesSchema{
+		Model:           mongox.Model{},
+		Index:           "",
+		Name:            "",
+		Type:            "",
+		Script:          "",
+		APIURL:          "",
+		TypicalSpeakers: nil,
+	}}
 }
 
 func (l *LanguagesModel) NewLanguagesCollection(db *mongo.Database) *mongox.Collection[LanguagesSchema] {
