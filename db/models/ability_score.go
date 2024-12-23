@@ -18,7 +18,11 @@ type AbilityScoreSchema struct {
 	FullName string         `bson:"full_name"`
 	Desc     []string       `bson:"desc"`
 	Skills   []AbilityScore `bson:"skills"`
-	ApiUrl   string         `bson:"Url"`
+	APIURL   string         `bson:"Url"`
+}
+
+func NewAbilityScoreModel() *AbilityScoreModel {
+	return &AbilityScoreModel{}
 }
 
 func (a *AbilityScoreModel) NewAbilityScoreCollection(db *mongo.Database) *mongox.Collection[AbilityScoreSchema] {

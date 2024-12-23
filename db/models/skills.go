@@ -22,7 +22,11 @@ type SkillsSchema struct {
 type AbilityScore struct {
 	Index  string `bson:"index"`
 	Name   string `bson:"name"`
-	ApiURL string `bson:"url"`
+	APIURL string `bson:"url"`
+}
+
+func NewSkillsModel() *SkillsModel {
+	return &SkillsModel{}
 }
 
 func (a *SkillsModel) NewSkillsCollection(db *mongo.Database) *mongox.Collection[SkillsSchema] {

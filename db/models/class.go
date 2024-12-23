@@ -26,6 +26,10 @@ type Subclass struct {
 	ApiURL string `bson:"url"`
 }
 
+func NewClassModel() *ClassModel {
+	return &ClassModel{}
+}
+
 func (c *ClassModel) NewClassCollection(db *mongo.Database) *mongox.Collection[ClassSchema] {
 	return mongox.NewCollection[ClassSchema](db.Collection(c.GetTableName()))
 }

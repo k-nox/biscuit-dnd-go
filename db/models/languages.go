@@ -18,8 +18,12 @@ type LanguagesSchema struct {
 	Name            string   `bson:"name"`
 	Type            string   `bson:"type"`
 	Script          string   `bson:"script"`
-	ApiURL          string   `bson:"url"`
+	APIURL          string   `bson:"url"`
 	TypicalSpeakers []string `bson:"typical_speakers"`
+}
+
+func NewLanguagesModel() *LanguagesModel {
+	return &LanguagesModel{}
 }
 
 func (l *LanguagesModel) NewLanguagesCollection(db *mongo.Database) *mongox.Collection[LanguagesSchema] {
