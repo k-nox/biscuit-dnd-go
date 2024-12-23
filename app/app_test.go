@@ -1,17 +1,29 @@
 package app_test
 
 import (
+	"bytes"
 	"testing"
 
+	"github.com/ilyakaznacheev/cleanenv"
+	"github.com/k-nox/biscuit-dnd-go/app"
+	"github.com/k-nox/biscuit-dnd-go/config"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 // dummy test just to get it up & running.
-func TestFoo(t *testing.T) {
-	expected := 1
-	actual := 1
-	assert.Equal(t, expected, actual)
+func TestApp_Run(t *testing.T) {
+	if !testing.Short() {
+		var cfg config.Config
+		err := cleanenv.ReadConfig("../config/config.yaml", &cfg)
+		require.NoError(t, err)
 
-	expected = 2
-	assert.NotEqual(t, expected, actual)
+		var output bytes.Buffer
+		app, err := app.New(cfg, &output)
+		require.NoError(t, err)
+		require.NoError(t, app.Run())
+		expected := "Barbarian\n"
+
+		assert.Equal(t, expected, output.String())
+	}
 }

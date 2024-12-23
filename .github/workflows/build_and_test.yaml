@@ -12,16 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Go
-        uses: actions/setup-go@v4
+      - name: Run docker compose
+        uses: hoverkraft-tech/compose-action@v2.0.2
         with:
-          go-version: "1.23"
-
-      - name: Install dependencies
-        run: go get -t ./...
-
-      - name: Build
-        run: go build -v ./...
-
-      - name: Test
-        run: go test -v ./...
+          compose-file: "./docker-compose.yaml"
+          up-flags: "--abort-on-container-exit --build"
+          down-flags: "--volumes --remove-orphans"
