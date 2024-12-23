@@ -13,10 +13,15 @@ const AbilityScoreTableName = "ability-scores"
 
 type AbilityScoreSchema struct {
 	mongox.Model
-	Index string `bson:"index"`
+	Index    string         `bson:"index"`
+	Name     string         `bson:"name"`
+	FullName string         `bson:"full_name"`
+	Desc     []string       `bson:"desc"`
+	Skills   []AbilityScore `bson:"skills"`
+	Url      string         `bson:"url"`
 }
 
-func (a *AbilityScoreModel) NewEquipmentCollection(db *mongo.Database) *mongox.Collection[AbilityScoreSchema] {
+func (a *AbilityScoreModel) NewAbilityScoreCollection(db *mongo.Database) *mongox.Collection[AbilityScoreSchema] {
 	return mongox.NewCollection[AbilityScoreSchema](db.Collection(a.GetTableName()))
 }
 
