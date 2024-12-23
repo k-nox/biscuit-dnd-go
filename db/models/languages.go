@@ -13,11 +13,12 @@ const tableName = "languages"
 
 type LanguagesSchema struct {
 	mongox.Model
-	Index  string `bson:"index"`
-	Name   string `bson:"name"`
-	Type   string `bson:"type"`
-	Script string `bson:"script"`
-	url    string `bson:"url"`
+	Index           string   `bson:"index"`
+	Name            string   `bson:"name"`
+	Type            string   `bson:"type"`
+	Script          string   `bson:"script"`
+	url             string   `bson:"url"`
+	TypicalSpeakers []string `bson:"typical_speakers"`
 }
 
 func (l *Languages) NewLanguagesCollection(db *mongo.Database) *mongox.Collection[LanguagesSchema] {
