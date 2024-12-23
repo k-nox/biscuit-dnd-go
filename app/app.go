@@ -52,6 +52,9 @@ func (a *App) Run() {
 	equipment := models.EquipmentModel{}
 	equipmentColl := equipment.NewEquipmentCollection(a.db)
 	equipmentResult, err := db.FindOneByKey(context.Background(), equipmentColl, "name", "Club")
+	if err != nil {
+		panic(err)
+	}
 
 	fmt.Println(
 		"id : ", equipmentResult.ID,
@@ -62,6 +65,9 @@ func (a *App) Run() {
 	abilityScore := models.AbilityScoreModel{}
 	abilityScoreColl := abilityScore.NewAbilityScoreCollection(a.db)
 	abilityScoreResult, err := db.FindOneByKey(context.Background(), abilityScoreColl, "full_name", "Intelligence")
+	if err != nil {
+		panic(err)
+	}
 
 	fmt.Println(
 		"id : ", abilityScoreResult.ID,
