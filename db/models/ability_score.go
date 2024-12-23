@@ -22,6 +22,7 @@ type AbilityScoreSchema struct {
 }
 
 func NewAbilityScoreModel() *AbilityScoreModel {
+	//lint:ignore U1000 Returning an empty struct pointer
 	return &AbilityScoreModel{}
 }
 

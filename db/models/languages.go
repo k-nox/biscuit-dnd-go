@@ -23,6 +23,7 @@ type LanguagesSchema struct {
 }
 
 func NewLanguagesModel() *LanguagesModel {
+	//lint:ignore U1000 Returning an empty struct pointer
 	return &LanguagesModel{}
 }
 

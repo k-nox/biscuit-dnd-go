@@ -23,10 +23,11 @@ type ClassSchema struct {
 type Subclass struct {
 	Index  string `bson:"index"`
 	Name   string `bson:"name"`
-	ApiURL string `bson:"url"`
+	APIURL string `bson:"url"`
 }
 
 func NewClassModel() *ClassModel {
+	//lint:ignore U1000 Returning an empty struct pointer
 	return &ClassModel{}
 }
 

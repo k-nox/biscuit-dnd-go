@@ -30,6 +30,7 @@ type EquipmentCategory struct {
 }
 
 func NewEquipmentModel() *EquipmentModel {
+	//lint:ignore U1000 Returning an empty struct pointer
 	return &EquipmentModel{}
 }
 
