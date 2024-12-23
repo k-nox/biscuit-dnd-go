@@ -10,5 +10,4 @@ import (
 
 type DndModels interface {
 	NewClassCollection(db *mongo.Database) *mongox.Collection[Class]
-	GetTableName() string
 }
