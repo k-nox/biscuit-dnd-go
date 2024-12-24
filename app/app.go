@@ -87,5 +87,6 @@ func (a *App) Run() error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
