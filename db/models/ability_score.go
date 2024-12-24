@@ -22,16 +22,7 @@ type AbilityScoreSchema struct {
 }
 
 func NewAbilityScoreModel() *AbilityScoreModel {
-	//lint:ignore U1000 Returning an empty struct pointer
-	return &AbilityScoreModel{AbilityScoreSchema: AbilityScoreSchema{
-		Model:    mongox.Model{},
-		Index:    "",
-		Name:     "",
-		FullName: "",
-		Desc:     nil,
-		Skills:   nil,
-		APIURL:   "",
-	}}
+	return &AbilityScoreModel{}
 }
 
 func (a *AbilityScoreModel) NewAbilityScoreCollection(db *mongo.Database) *mongox.Collection[AbilityScoreSchema] {

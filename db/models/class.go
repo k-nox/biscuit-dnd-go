@@ -27,8 +27,7 @@ type Subclass struct {
 }
 
 func NewClassModel() *ClassModel {
-	classModel := &ClassModel{}
-	return classModel
+	return &ClassModel{}
 }
 
 func (c *ClassModel) NewClassCollection(db *mongo.Database) *mongox.Collection[ClassSchema] {
