@@ -5,7 +5,6 @@ package models
 
 type DndModels interface {
 	GetTableName() string
-	GetSchema() interface{}
 }
 
 // Add core methods here
