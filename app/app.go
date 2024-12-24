@@ -29,14 +29,64 @@ func New(c config.Config, w io.Writer) (*App, error) {
 }
 
 func (a *App) Run() error {
-	classColl := models.NewClassCollection(a.db)
-	class, err := db.FindOneByKey(context.Background(), classColl, "name", "Barbarian")
+	class := models.NewClassModel()
+	classColl := class.NewClassCollection(a.db)
+	classResult, err := db.FindOneByKey(context.Background(), classColl, "name", "Barbarian")
 
 	if err != nil {
-		return fmt.Errorf("error performing lookup: %w", err)
+		panic(err)
 	}
 
-	fmt.Fprintln(a.writer, class.Name)
+	fmt.Println(
+		"id : ", classResult.ID,
+		" name : ", classResult.Name,
+		" subclass : ", classResult.Subclasses,
+		" subclass name : ", classResult.Subclasses[0].Name)
+
+	lang := models.NewLanguagesModel()
+	langColl := lang.NewLanguagesCollection(a.db)
+	langResult, err := db.FindOneByKey(context.Background(), langColl, "name", "Primordial")
+
+	if err != nil {
+		return err
+	}
+
+	fmt.Println("id : ", langResult.ID, " name : ", langResult.Name, " typical speakers : ", langResult.TypicalSpeakers)
+
+	equipment := models.NewEquipmentModel()
+	equipmentColl := equipment.NewEquipmentCollection(a.db)
+	equipmentResult, err := db.FindOneByKey(context.Background(), equipmentColl, "name", "Club")
+	if err != nil {
+		return err
+	}
+
+	fmt.Println(
+		"id : ", equipmentResult.ID,
+		" name : ", equipmentResult.Name,
+		" weapon category : ", equipmentResult.WeaponCategory,
+		" equipment category name : ", equipmentResult.EquipmentCategory.Name)
+
+	abilityScore := models.NewAbilityScoreModel()
+	abilityScoreColl := abilityScore.NewAbilityScoreCollection(a.db)
+	abilityScoreResult, err := db.FindOneByKey(context.Background(), abilityScoreColl, "full_name", "Intelligence")
+	if err != nil {
+		return err
+	}
+
+	fmt.Println(
+		"id : ", abilityScoreResult.ID,
+		" name : ", abilityScoreResult.Name,
+		" full name : ", abilityScoreResult.FullName,
+		" desc : ", abilityScoreResult.Desc)
+
+	for _, skill := range abilityScoreResult.Skills {
+		fmt.Println("skill : ", skill.Name)
+	}
+
+	_, err = fmt.Fprintln(a.writer, classResult.Name)
+	if err != nil {
+		return err
+	}
 
 	return nil
 }
