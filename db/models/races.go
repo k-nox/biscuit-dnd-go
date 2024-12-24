@@ -12,8 +12,11 @@ type RacesModel struct {
 const racesTableName = "races"
 
 type RacesSchema struct {
-	Index string `bson:"index"`
-	Name  string `bson:"name"`
+	Index  string `bson:"index"`
+	Name   string `bson:"name"`
+	Desc   string `bson:"desc"`
+	Speed  int    `bson:"speed"`
+	APIURL string `bson:"url"`
 }
 
 func NewRacesModel() *RacesModel {
