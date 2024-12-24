@@ -33,7 +33,3 @@ func (l *LanguagesModel) NewLanguagesCollection(db *mongo.Database) *mongox.Coll
 func (l *LanguagesModel) GetTableName() string {
 	return languagesTableName
 }
-
-func (l *LanguagesModel) GetSchema() interface{} {
-	return l.LangaugesSchema
-}

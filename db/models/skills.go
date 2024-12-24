@@ -36,7 +36,3 @@ func (a *SkillsModel) NewSkillsCollection(db *mongo.Database) *mongox.Collection
 func (a *SkillsModel) GetTableName() string {
 	return SkillsTableName
 }
-
-func (a *SkillsModel) GetSchema() interface{} {
-	return a.AbilityScoreSchema
-}

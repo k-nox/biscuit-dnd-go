@@ -32,7 +32,3 @@ func (a *AbilityScoreModel) NewAbilityScoreCollection(db *mongo.Database) *mongo
 func (a *AbilityScoreModel) GetTableName() string {
 	return AbilityScoreTableName
 }
-
-func (a *AbilityScoreModel) GetSchema() interface{} {
-	return a.AbilityScoreSchema
-}

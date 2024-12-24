@@ -38,7 +38,3 @@ func (f *FeaturesModel) NewFeaturesCollection(db *mongo.Database) *mongox.Collec
 func (f *FeaturesModel) GetTableName() string {
 	return featureTableName
 }
-
-func (f *FeaturesModel) GetSchema() interface{} {
-	return f.FeaturesSchema
-}

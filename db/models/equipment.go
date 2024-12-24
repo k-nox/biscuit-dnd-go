@@ -40,7 +40,3 @@ func (l *EquipmentModel) NewEquipmentCollection(db *mongo.Database) *mongox.Coll
 func (l *EquipmentModel) GetTableName() string {
 	return equipmentTableName
 }
-
-func (l *EquipmentModel) GetSchema() interface{} {
-	return l.EquipmentSchema
-}

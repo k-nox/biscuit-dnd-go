@@ -27,7 +27,3 @@ func (r *RacesModel) NewRacesCollection(db *mongo.Database) *mongox.Collection[R
 func (r *RacesModel) GetTableName() string {
 	return racesTableName
 }
-
-func (r *RacesModel) GetSchema() interface{} {
-	return r.RacesSchema
-}

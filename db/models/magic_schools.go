@@ -31,7 +31,3 @@ func (m *MagicSchoolsModel) NewMagicSchoolsCollection(db *mongo.Database) *mongo
 func (m *MagicSchoolsModel) GetTableName() string {
 	return MagicSchoolTableName
 }
-
-func (m *MagicSchoolsModel) GetSchema() interface{} {
-	return m.MagicSchoolsSchema
-}
