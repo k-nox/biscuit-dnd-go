@@ -6,5 +6,3 @@ package models
 type DndModels interface {
 	GetTableName() string
 }
-
-// Add core methods here

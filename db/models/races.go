@@ -12,10 +12,43 @@ type RacesModel struct {
 const racesTableName = "races"
 
 type RacesSchema struct {
+	Index               string                `bson:"index"`
+	Name                string                `bson:"name"`
+	Desc                string                `bson:"desc"`
+	Speed               int                   `bson:"speed"`
+	Age                 string                `bson:"age"`
+	Alignment           string                `bson:"alignment"`
+	SizeDescription     string                `bson:"size_description"`
+	Size                string                `bson:"size"`
+	StartingProficiency []StartingProficiency `bson:"starting_proficiencies"`
+	Languages           []Languages           `bson:"languages"`
+	LanguageDescription string                `bson:"language_desc"`
+	Traits              []Traits              `bson:"traits"`
+	Subraces            []Subraces            `bson:"subraces"`
+	APIURL              string                `bson:"url"`
+}
+
+type StartingProficiency struct {
 	Index  string `bson:"index"`
 	Name   string `bson:"name"`
-	Desc   string `bson:"desc"`
-	Speed  int    `bson:"speed"`
+	APIURL string `bson:"url"`
+}
+
+type Languages struct {
+	Index  string `bson:"index"`
+	Name   string `bson:"name"`
+	APIURL string `bson:"url"`
+}
+
+type Traits struct {
+	Index  string `bson:"index"`
+	Name   string `bson:"name"`
+	APIURL string `bson:"url"`
+}
+
+type Subraces struct {
+	Index  string `bson:"index"`
+	Name   string `bson:"name"`
 	APIURL string `bson:"url"`
 }
 
