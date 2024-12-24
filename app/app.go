@@ -82,5 +82,10 @@ func (a *App) Run() error {
 	for _, skill := range abilityScoreResult.Skills {
 		fmt.Println("skill : ", skill.Name)
 	}
+
+	_, err = fmt.Fprintln(a.writer, classResult.Name)
+	if err != nil {
+		return err
+	}
 	return nil
 }
