@@ -15,12 +15,37 @@ const classTableName = "classes"
 
 type ClassSchema struct {
 	mongox.Model
-	Name        string     `bson:"name"`
-	ClassLevels string     `bson:"class_levels"`
-	Subclasses  []Subclass `bson:"subclasses"`
+	Name              string              `bson:"name"`
+	ClassLevels       string              `bson:"class_levels"`
+	Subclasses        []Subclass          `bson:"subclasses"`
+	Proficiencies     []Proficiencies     `bson:"proficiencies"`
+	SavingThrows      []SavingThrows      `bson:"saving_throws"`
+	StartingEquipment []StartingEquipment `bson:"starting_equipment"`
 }
 
 type Subclass struct {
+	Index  string `bson:"index"`
+	Name   string `bson:"name"`
+	APIURL string `bson:"url"`
+}
+
+type Proficiencies struct {
+	Index  string `bson:"index"`
+	Name   string `bson:"name"`
+	APIURL string `bson:"url"`
+}
+
+type SavingThrows struct {
+	Index  string `bson:"index"`
+	Name   string `bson:"name"`
+	APIURL string `bson:"url"`
+}
+
+type StartingEquipment struct {
+	Equipment Equipment
+}
+
+type Equipment struct {
 	Index  string `bson:"index"`
 	Name   string `bson:"name"`
 	APIURL string `bson:"url"`
